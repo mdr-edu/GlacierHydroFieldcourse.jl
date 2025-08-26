@@ -1,0 +1,15 @@
+Experiment No, Location, Date,  Injection time,  End time,  Salt mass [g], 145, 309, wtw
+1, Lake, 20.08.2025, 11:49, 11:59, 3000, x, x, x
+2, UpperStream, 20.08.2025, 15:05, 15:15, 40, x, x, x
+3, Lake, 21.08.2025, 09:50, 10:00, 2000, x, x, x
+4, SmallStream, 21.08.2025, 11:18, 11:28, 10, x, x, x
+5, SmallStream, 21.08.2025, 11:30, 12:00, 10, x, x, x
+6, UpperStream, 21.08.2025, 14:25, 14:35, 40, x, x, x
+7, Lake, 22.08.2025, 08:55, 09:05, 3000, x, x, x
+8, SmallStream, 22.08.2025, 10:51, 10:21, 10, x, x, x
+9, SmallStream, 22.08.2025, 12:05, 12:35, 10, x, x, x
+10, SmallStream, 22.08.2025, 13:30, 14:00, 10, x, x, x
+11, SmallStream, 22.08.2025, 14:13, 14:43, 10, x, x, x
+12, UpperStream, 22.08.2025, 14:25, 14:35, 40, x, x, x
+13, Lake, 22.08.2025, 17:20, 17:30, 2000, x, x, x
+14, UpperStream, 23.08.2025, 09:42, 10:12, 40, x, x, x
