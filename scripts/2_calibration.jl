@@ -8,7 +8,7 @@ solution_conc = 1.0 # calibration solution concentration (g/l)
 # Total calibration ml solution vs sensor readout (μS/cm) for each sensor
 # Example from 2021:
 
-calibrations = Dict(309=>[ ## sensor 309
+calibrations = Dict(#=309=>[ ## sensor 309
                              ## first calibration
                           [ 0 0.54 ## First row needs to be the background reading!
                             1 1.35
@@ -33,10 +33,51 @@ calibrations = Dict(309=>[ ## sensor 309
                               2 3.03
                               5 5.88
                               10 11.83 ],
-                            ],
-                    :wtw=>[ ## note that sensors non-numeric ID are best written as a :symbol
+                            ],=#
+
+                    ## For 1g/l concentration:
+                    :wtw_upper_stream=>[ ## note that sensors non-numeric ID are best written as a :symbol
+                           [0 1.8
+                            1 4.5
+                            2 6.7
+                            5 13.6
+                            10 24.2]],
+                    :wtw_lower_stream=>[ ## note that sensors non-numeric ID are best written as a :symbol
+                           [0 1.5
+                            1 4.8
+                            2 6.2
+                            5 14.0
+                            10 24.5]],
+                    :wtw_lake=>[ ## note that sensors non-numeric ID are best written as a :symbol
+                           [0 4.4
+                            1 7.3
+                            2 9.5
+                            5 16.5
+                            10 26.7]],
+
+                    ## For 10g/l concentration:
+                    #=
+                    :wtw_upper_stream=>[ ## note that sensors non-numeric ID are best written as a :symbol
+                           [0 1.5
+                            2 46.2
+                            4 90.7 
+                            9 197.0
+                            13 283.0]],
+                    :wtw_lower_stream=>[ ## note that sensors non-numeric ID are best written as a :symbol
                            [0 1.4
-                            1 2.7]],
+                            2 46.3
+                            4 90.9
+                            9 197.6
+                            13 282.0]],
+                    :wtw_lake=>[ ## note that sensors non-numeric ID are best written as a :symbol
+                           [0 4.3
+                            2 47.5
+                            4 90.8
+                            9 194.3
+                            13 280.0]],
+                            =#
+
+
                     ## add more:
                     ## 049=>[],
                     ## :someother=>[], ## etc
@@ -62,7 +103,7 @@ function ml_to_concentration(ml, solution_conc, bucketsize)
     return mass/bucketsize # concentration in g/l (== kg/m^3)
 end
 # An example, convert to concentration (g/l):
-ml_to_concentration(calibrations[309][1][:,1], solution_conc, bucketsize)
+ml_to_concentration(calibrations[:wtw_upper_stream][1][:,1], solution_conc, bucketsize)
 
 # Now fit a linear function to it.  The function is pre-defined in the file helper_functions.jl with
 # name `fit_calibration`.
@@ -73,7 +114,7 @@ delta_cond2conc = Dict(a[1] => fit_calibration(bucketsize, solution_conc, a[2]..
 # Plot them
 
 using GLMakie
-Makie.inline!(true)
+Makie.inline!(false)
 ## Note if you want a zoom-able plot opening in a new window do:
 ## Makie.inline!(false)
 ## to go back to in-line plots set it true again
@@ -103,8 +144,8 @@ fig
 
 # Save them as files:
 
-## mkpath("../plots")
-## save("../plots/calibration.png", fig) ## to save this figure to a file, useful for your presentation
+mkpath("../plots")
+save("../plots/calibration.png", fig) ## to save this figure to a file, useful for your presentation
 
 #md save("../docs/calibration.png", fig) #hide
 #md # ![](calibration.png)
